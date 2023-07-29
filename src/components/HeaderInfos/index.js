@@ -2,8 +2,8 @@ import "./HeaderInfos.css";
 
 export default function HeaderInfos() {
   return (
-    <header>
-      <h1>
+    <header className="header">
+      <h1 className="title mb-5">
         Willkommen bei ViennaCalling
         <span className="lowerCase" aria-hidden="true">
           gesponsert bei POPTIS

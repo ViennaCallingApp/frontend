@@ -1,13 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import RouteDetail from "./pages/RouteDetail";
 import "./App.css";
-import HeaderInfos from "./components/HeaderInfos";
-import SelectRoute from "./components/SelectRoute";
 
 function App() {
   return (
-    <div className="App">
-      <HeaderInfos></HeaderInfos>
-      <SelectRoute></SelectRoute>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/detail" element={<RouteDetail />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
