@@ -22,12 +22,22 @@ recognition.lang = 'de-AT'
 
 const getSpeech = (type) => {
   recognition.start()
-  recognition.onresult = (event) => {
+  console.log("RECOGNITION STARTED"); 
+  recognition.onnomatch = (event) => {console.log("no match", event)}
+    recognition.onresult = (event) => {
     let word = event.results[0][0].transcript
     console.log("TRANSCRIPTION: ", word);
-    type === 'start' ? setStart(word) : setEnd(word);
-  }
-}
+    if(!word) {
+      type === 'start' ? setStart(false) : setEnd(false);
+        } else {
+          if (stops.includes(word)) {
+          type === 'start' ? setStart(word) : setEnd(word);
+          } else {
+            type === 'start' ? setStart(false) : setEnd(false);
+          }
+        }
+      }
+    }
 
   return (
     <div>
@@ -38,6 +48,8 @@ const getSpeech = (type) => {
       <Button variant="primary" aria-describedby="Sprechen sie nach dem Klick" onClick={() => getSpeech('start')}>
         Start-Haltestelle bestimmen
       </Button>
+      {start !== false && start !== "" && <p>{start} erkannt</p>}
+      {start === false && <p>Es konnte keine passende Haltestelle gefunden werden. Bitte probiere es noch einmal</p>}
       <Button variant="primary" aria-describedby="Sprechen sie nach dem Klick" onClick={() => getSpeech('end')}>
         End-Haltestelle bestimmen
       </Button>
