@@ -14,13 +14,13 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "docker buildx build --push --tag jajcoszek/viennacalling-frontend:${nextRelease.version} --tag jajcoszek/viennacalling-frontend:latest --platform linux/amd64,linux/arm64 ."
+        "prepareCmd": "system/release.sh ${nextRelease.version}"
       }
     ],
     [
       "@semantic-release/git",
       {
-        "assets": ["CHANGELOG.md"]
+        "assets": ["CHANGELOG.md", "deploy/kustomization.yaml"]
       }
     ]
   ]
