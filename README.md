@@ -1,6 +1,6 @@
 # ViennaCallingApp/frontend
 
-`ViennaCallingApp/frontend` s a web application that simplifies and facilitates navigation in subway stations for people with visual impairments. It allows users to enter their starting point and destination by voice and to control the web application with screen readers.
+`ViennaCallingApp/frontend` is a web application that simplifies and facilitates navigation in subway stations for people with visual impairments. It allows users to enter their starting point and destination by voice and to control the web application with screen readers.
 
 ## Developing
 
