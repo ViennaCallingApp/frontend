@@ -2,47 +2,16 @@ import Button from "react-bootstrap/Button";
 import React, { useState } from "react";
 import "./SelectRoute.css";
 
+import { stops } from "./Stops.mock.js";
+
 export default function SelectRoute() {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
-  start && console.log("START: ", start);
-  end && console.log("END: ", end);
 
   let SpeechRecognition =
     window.webkitSpeechRecognition || window.SpeechRecognition;
   let SpeechGrammarList =
     window.SpeechGrammarList || window.webkitSpeechGrammarList;
-
-  let stops = [
-    "Schwedenplatz",
-    "Siebenhirten",
-    "Karlsplatz",
-    "Stephansplatz",
-    "Hauptbahnhof",
-    "Keplerplatz",
-    "Praterstern",
-    "Schottenring",
-    "Schottentor",
-    "Schönbrunn",
-    "Westbahnhof",
-    "Landstraße",
-    "Schwedenplatz",
-    "Reumannplatz",
-    "Kagran",
-    "Hütteldorf",
-    "Ottakring",
-    "Heiligenstadt",
-    "Spittelau",
-    "Volkstheater",
-    "Rathaus",
-    "Schottentor",
-    "Schottenring",
-    "Praterstern",
-    "Karlsplatz",
-    "Stephansplatz",
-    "Hauptbahnhof",
-    "Oberlaa",
-  ];
 
   let grammar =
     "#JSGF V1.0; grammar stops; public <stops> = " + stops.join(" | ") + ";";
@@ -86,16 +55,17 @@ export default function SelectRoute() {
         variant="primary"
         aria-description="Sprechen sie nach dem Klick"
         onClick={() => getSpeech("start")}
+        className="buttonPrimary"
       >
         Start-Haltestelle bestimmen
       </Button>
       {start !== false && start !== "" && (
-        <p aria-live="assertive" aria-hidden="true">
+        <p aria-live="assertive" className="text-center">
           {start} erkannt
         </p>
       )}
       {start === false && (
-        <p aria-live="assertive" aria-hidden="true">
+        <p aria-live="polite" aria-hidden="true">
           Es konnte keine passende Start-Haltestelle gefunden werden. Bitte
           probiere es noch einmal
         </p>
@@ -104,25 +74,21 @@ export default function SelectRoute() {
         variant="primary"
         aria-description="Sprechen sie nach dem Klick"
         onClick={() => getSpeech("end")}
+        className="buttonPrimary"
       >
         End-Haltestelle bestimmen
       </Button>
-      {end !== false && end !== "" && (
-        <p aria-live="assertive" aria-hidden="true">
-          {end} erkannt
+      {end !== "" && (
+        <p aria-live="polite" aria-hidden="true" className="text-center">
+          {end !== false && end !== "" && `${end} erkannt`}
+          {end === false &&
+            "Es konnte keine passende Endhaltestelle gefunden werden. Bitte probiere es noch einmal"}
         </p>
       )}
-      {end === false && (
-        <p aria-live="assertive" aria-hidden="true">
-          Es konnte keine passende Endhaltestelle gefunden werden. Bitte
-          probiere es noch einmal
-        </p>
-      )}
-
       {start && end && (
         <Button
           variant="primary"
-          className="mb-0 mt-4"
+          className="mb-0 mt-4 buttonPrimary"
           href={`/detail?start=${start}&end=${end}`}
         >
           Route zwischen {start} und {end} berechnen?
