@@ -4,3 +4,7 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
+images:
+- name: jajcoszek/viennacalling-frontend
+  newName: jajcoszek/viennacalling-frontend
+  newTag: 1.0.3
