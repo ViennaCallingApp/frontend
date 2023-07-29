@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 
 export default function RouteDetail() {
   const [steps, setSteps] = useState(null);
+  const [middleSteps, setMiddleSteps] = useState(null);
+  const [showDescription, setShowDescription] = useState({});
   const [params] = useSearchParams();
   const start = params.get("start");
   const end = params.get("end");
@@ -19,7 +21,16 @@ export default function RouteDetail() {
         return response.json();
       })
       .then((description) => {
-        setSteps(description.steps);
+        const steps = [...description.steps];
+        setSteps(steps);
+        const middleSteps = [...description.steps];
+        middleSteps.shift();
+        middleSteps.pop();
+        setMiddleSteps(middleSteps);
+        setShowDescription({
+          ...description.steps.map((step,index) => false)
+        })
+        console.log("SHOW DESCRIPTION: ", showDescription);
       });
   }, []);
 
@@ -27,23 +38,53 @@ export default function RouteDetail() {
     <div className="wrapper">
       {!steps && <p>Route wird berechnet...</p>}
       {steps && (
-        <section>
-          <h1>Ihre Route:</h1>
+        <>
+          <section>
+            <h1>Ihre Route:</h1>
+            <ol>
+              {middleSteps.map(({ title, stepQueryFrom, stepQueryTo }) => (
+                <>
+                  <li key={title}>
+                    {"Um " +
+                      stepQueryFrom.startTime +
+                      " " +
+                      stepQueryFrom.lineNumber +
+                      " von " +
+                      stepQueryFrom.from +
+                      " bis " +
+                      stepQueryFrom.to}
+                  </li>
+                  <li key={title}>
+                    {"Um " +
+                      stepQueryTo.startTime +
+                      " " +
+                      stepQueryTo.lineNumber +
+                      " von " +
+                      stepQueryTo.from +
+                      " bis " +
+                      stepQueryTo.to}
+                  </li>
+                </>
+              ))}
+            </ol>
+          </section>
+          <section>
+          <h1>Ihre Wegbeschreibungen:</h1>
           <ol>
-            {steps.map(({ title, stepQueryFrom, stepQueryTo }) => (
-              <li key={title}>
-                {"Um " +
-                  stepQueryFrom.startTime +
-                  " " +
-                  stepQueryFrom.lineNumber +
-                  " von " +
-                  stepQueryFrom.from +
-                  " bis " +
-                  stepQueryFrom.to}
-              </li>
-            ))}
+          {steps.map(({title, route}, index) => (
+            <li key={title}>
+              <button onClick={() => setShowDescription({...showDescription, [index]: true})}>{title}</button>
+              {showDescription[index] && <p>
+                {route.contents.map((text) => (
+                  <span>{text}</span>
+                ))}
+              </p>}
+            </li>
+          ))}
           </ol>
-        </section>
+
+          </section>
+        </>
       )}
     </div>
   );
