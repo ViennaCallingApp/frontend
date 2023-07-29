@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - test/actions
 jobs:
   release-frontend:
     permissions:
