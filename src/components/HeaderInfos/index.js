@@ -4,7 +4,8 @@ export default function HeaderInfos() {
   return (
     <header className="header">
       <h1 className="title mb-5">
-        Willkommen bei ViennaCalling
+        Willkommen bei <span lang="es"> Vienna</span>
+        <span lang="en"> Calling</span>
         <span className="lowerCase" aria-hidden="true">
           gesponsert bei POPTIS
         </span>

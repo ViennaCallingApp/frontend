@@ -59,9 +59,7 @@ export default function SelectRoute() {
   const getSpeech = (type) => {
     recognition.start();
     console.log("RECOGNITION STARTED");
-    recognition.onnomatch = (event) => {
-      console.log("no match", event);
-    };
+
     recognition.onresult = (event) => {
       let word = event.results[0][0].transcript;
       console.log("TRANSCRIPTION: ", word);
@@ -85,43 +83,45 @@ export default function SelectRoute() {
       </p>
       <Button
         variant="primary"
-        aria-describedby="Sprechen sie nach dem Klick"
+        aria-description="Sprechen sie nach dem Klick"
         onClick={() => getSpeech("start")}
       >
         Start-Haltestelle bestimmen
       </Button>
-      {start !== false && start !== "" && <p>{start} erkannt</p>}
+      {start !== false && start !== "" && (
+        <p aria-live="assertive" aria-hidden="true">
+          {start} erkannt
+        </p>
+      )}
       {start === false && (
-        <p>
+        <p aria-live="assertive" aria-hidden="true">
           Es konnte keine passende Start-Haltestelle gefunden werden. Bitte
           probiere es noch einmal
         </p>
       )}
       <Button
         variant="primary"
-        aria-describedby="Sprechen sie nach dem Klick"
+        aria-description="Sprechen sie nach dem Klick"
         onClick={() => getSpeech("end")}
       >
         End-Haltestelle bestimmen
       </Button>
-      {end !== false && end !== "" && <p>{end} erkannt</p>}
+      {end !== false && end !== "" && (
+        <p aria-live="assertive" aria-hidden="true">
+          {end} erkannt
+        </p>
+      )}
       {end === false && (
-        <p>
+        <p aria-live="assertive" aria-hidden="true">
           Es konnte keine passende Endhaltestelle gefunden werden. Bitte
           probiere es noch einmal
         </p>
       )}
 
       {start && end && (
-        <>
-          <p className="mb-0 mt-4">
-            Route zwischen {start} und {end} berechnen?
-          </p>
-          <div className="buttonList">
-            <Button variant="outline-primary">Abbrechen</Button>
-            <Button variant="primary">Ja</Button>
-          </div>
-        </>
+        <Button variant="primary" className="mb-0 mt-4">
+          Route zwischen {start} und {end} berechnen?
+        </Button>
       )}
     </div>
   );
