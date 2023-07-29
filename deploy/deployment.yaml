@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: viennacalling-frontend
+  name: viennacalling-frontend
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: viennacalling-frontend
+  template:
+    metadata:
+      labels:
+        app: viennacalling-frontend
+    spec:
+      containers:
+        - image: jajcoszek/viennacalling-frontend:1.0.0
+          imagePullPolicy: Always
+          name: viennacalling-frontend
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+              resources:
+                requests:
+                  cpu: 500m
+                  ephemeral-storage: 1Gi
+                  memory: 1Gi
