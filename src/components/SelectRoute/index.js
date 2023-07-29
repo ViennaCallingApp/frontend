@@ -19,6 +19,7 @@ export default function SelectRoute() {
     "Karlsplatz",
     "Stephansplatz",
     "Hauptbahnhof",
+    "Keplerplatz",
     "Praterstern",
     "Schottenring",
     "Schottentor",
@@ -119,7 +120,11 @@ export default function SelectRoute() {
       )}
 
       {start && end && (
-        <Button variant="primary" className="mb-0 mt-4">
+        <Button
+          variant="primary"
+          className="mb-0 mt-4"
+          href={`/detail?start=${start}&end=${end}`}
+        >
           Route zwischen {start} und {end} berechnen?
         </Button>
       )}
