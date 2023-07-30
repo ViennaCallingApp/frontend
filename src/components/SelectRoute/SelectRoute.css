@@ -1,3 +1,11 @@
+.headerDetail {
+  color: #e30014;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 16px;
+  font-weight: 700;
+}
+
 .routeWrapper {
   display: flex;
   flex-direction: column;
@@ -7,4 +15,30 @@
 .buttonPrimary {
   background-color: #e30014 !important;
   border-color: #e30014 !important;
+}
+
+.wayStepButton {
+  background: #e8e8e8;
+  border: 0;
+  margin: 0;
+  text-align: left;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.list {
+  padding: 0 0 0 20px;
+}
+.listItem {
+  margin: 6px 0;
+}
+
+.description {
+  padding-left: 14px;
+  /* height: 141px;
+  overflow: hidden;
+
+  .text {
+    text-overflow: ellipsis;
+  } */
 }

@@ -8,11 +8,10 @@ export default function RouteDetail() {
   const [params] = useSearchParams();
   const start = params.get("start");
   const end = params.get("end");
-  console.log("start", start, end);
 
   useEffect(() => {
     fetch(
-      "http://localhost:8080/api/path/" +
+      "https://viennacalling.bleggbeard.io/api/path/" +
         start.toLowerCase() +
         "/" +
         end.toLowerCase()
@@ -28,14 +27,15 @@ export default function RouteDetail() {
         middleSteps.pop();
         setMiddleSteps(middleSteps);
         setShowDescription({
-          ...description.steps.map((step,index) => false)
-        })
+          ...description.steps.map((step, index) => false),
+        });
         console.log("SHOW DESCRIPTION: ", showDescription);
       });
   }, []);
 
   return (
     <div className="wrapper">
+      <header class="headerDetail">ViennaCalling</header>
       {!steps && <p>Route wird berechnet...</p>}
       {steps && (
         <>
@@ -44,7 +44,7 @@ export default function RouteDetail() {
             <ol>
               {middleSteps.map(({ title, stepQueryFrom, stepQueryTo }) => (
                 <>
-                  <li key={title}>
+                  <li key={title + "_from"}>
                     {"Um " +
                       stepQueryFrom.startTime +
                       " " +
@@ -54,7 +54,7 @@ export default function RouteDetail() {
                       " bis " +
                       stepQueryFrom.to}
                   </li>
-                  <li key={title}>
+                  <li key={title + "_to"}>
                     {"Um " +
                       stepQueryTo.startTime +
                       " " +
@@ -69,20 +69,26 @@ export default function RouteDetail() {
             </ol>
           </section>
           <section>
-          <h1>Ihre Wegbeschreibungen:</h1>
-          <ol>
-          {steps.map(({title, route}, index) => (
-            <li key={title}>
-              <button onClick={() => setShowDescription({...showDescription, [index]: true})}>{title}</button>
-              {showDescription[index] && <p>
-                {route.contents.map((text) => (
-                  <span>{text}</span>
-                ))}
-              </p>}
-            </li>
-          ))}
-          </ol>
-
+            <h1>Ihre Wegbeschreibungen:</h1>
+            <ol class="list">
+              {steps.map(({ title, route }, index) => (
+                <li key={title} className="listItem">
+                  <button
+                    onClick={() =>
+                      setShowDescription({ ...showDescription, [index]: true })
+                    }
+                    className="wayStepButton"
+                  >
+                    {title}
+                  </button>
+                  {showDescription[index] && (
+                    <p aria-live="polite" className="description">
+                      <span className="text">{route.contents.join(" ")}</span>
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ol>
           </section>
         </>
       )}

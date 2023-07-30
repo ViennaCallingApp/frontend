@@ -87,7 +87,7 @@ export default function SelectRoute() {
       )}
       {start && end && (
         <Button
-          variant="primary"
+          variant="outline-primary"
           className="mb-0 mt-4 buttonPrimary"
           href={`/detail?start=${start}&end=${end}`}
         >
