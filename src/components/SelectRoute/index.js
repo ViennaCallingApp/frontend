@@ -46,35 +46,31 @@ export default function SelectRoute() {
   };
 
   return (
-    <div className="routeWrapper">
-      <p>
+    <div className="routeWrapper mt-5">
+      {/* <p>
         Um die gewünschte Route zu berechnen, sagen sie ihren Start- und
         Zielort, nachdem sie die folgenden Schaltflächen drücken.
-      </p>
+      </p> */}
       <Button
         variant="primary"
         aria-description="Sprechen sie nach dem Klick"
         onClick={() => getSpeech("start")}
-        className="buttonPrimary"
+        className="buttonPrimary enterRoute"
       >
         Start-Haltestelle bestimmen
       </Button>
-      {start !== false && start !== "" && (
-        <p aria-live="assertive" className="text-center">
-          {start} erkannt
-        </p>
-      )}
-      {start === false && (
-        <p aria-live="polite" aria-hidden="true">
-          Es konnte keine passende Start-Haltestelle gefunden werden. Bitte
-          probiere es noch einmal
+      {start !== "" && (
+        <p aria-live="polite" aria-hidden="true" className="text-center">
+          {start !== false && start !== "" && `${start} erkannt`}
+          {start === false &&
+            "Es konnte keine passende Endhaltestelle gefunden werden. Bitte probiere es noch einmal"}
         </p>
       )}
       <Button
         variant="primary"
         aria-description="Sprechen sie nach dem Klick"
         onClick={() => getSpeech("end")}
-        className="buttonPrimary"
+        className="buttonPrimary enterRoute mt-4"
       >
         End-Haltestelle bestimmen
       </Button>
@@ -87,8 +83,8 @@ export default function SelectRoute() {
       )}
       {start && end && (
         <Button
-          variant="outline-primary"
-          className="mb-0 mt-4 buttonPrimary"
+          variant="primary"
+          className="mb-0 mt-4 submitButton"
           href={`/detail?start=${start}&end=${end}`}
         >
           Route zwischen {start} und {end} berechnen?

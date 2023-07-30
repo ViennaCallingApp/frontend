@@ -1,6 +1,9 @@
 .title {
   position: relative;
 }
+.titleName {
+  color: #e30014;
+}
 
 .lowerCase {
   font-size: 12px;

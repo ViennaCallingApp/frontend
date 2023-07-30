@@ -17,6 +17,15 @@
   border-color: #e30014 !important;
 }
 
+.buttonPrimary.enterRoute {
+  height: 56px;
+}
+
+.buttonPrimary.enterRoute,
+.submitButton {
+  font-size: 22px;
+}
+
 .wayStepButton {
   background: #e8e8e8;
   border: 0;
