@@ -35,7 +35,7 @@ export default function RouteDetail() {
 
   return (
     <div className="wrapper">
-      <header class="headerDetail">ViennaCalling</header>
+      <header className="headerDetail">ViennaCalling</header>
       {!steps && <p>Route wird berechnet...</p>}
       {steps && (
         <>

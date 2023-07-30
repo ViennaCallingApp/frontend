@@ -60,7 +60,7 @@ export default function SelectRoute() {
         Start-Haltestelle bestimmen
       </Button>
       {start !== "" && (
-        <p aria-live="polite" aria-hidden="true" className="text-center">
+        <p aria-live="polite" className="text-center">
           {start !== false && start !== "" && `${start} erkannt`}
           {start === false &&
             "Es konnte keine passende Endhaltestelle gefunden werden. Bitte probiere es noch einmal"}
@@ -75,7 +75,7 @@ export default function SelectRoute() {
         End-Haltestelle bestimmen
       </Button>
       {end !== "" && (
-        <p aria-live="polite" aria-hidden="true" className="text-center">
+        <p aria-live="polite" className="text-center">
           {end !== false && end !== "" && `${end} erkannt`}
           {end === false &&
             "Es konnte keine passende Endhaltestelle gefunden werden. Bitte probiere es noch einmal"}
