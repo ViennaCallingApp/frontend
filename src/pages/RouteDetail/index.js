@@ -80,6 +80,7 @@ export default function RouteDetail() {
                       setShowDescription({ ...showDescription, [index]: true })
                     }
                     className="wayStepButton"
+                    aria-description="Für mehr details klicken"
                   >
                     {title}
                   </button>

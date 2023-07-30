@@ -4,9 +4,9 @@ export default function HeaderInfos() {
   return (
     <header className="header">
       <h1 className="title mb-5">
-        Willkommen bei{" "}
+        Willkommen bei <br></br>
         <span lang="es" className="titleName">
-          Vienna
+          Vienna{" "}
         </span>
         <span lang="en" className="titleName">
           Calling
