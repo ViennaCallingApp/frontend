@@ -7,4 +7,4 @@ resources:
 images:
 - name: jajcoszek/viennacalling-frontend
   newName: jajcoszek/viennacalling-frontend
-  newTag: 1.2.0
+  newTag: 1.3.0
