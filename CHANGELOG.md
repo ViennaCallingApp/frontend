@@ -1,5 +1,12 @@
 # ViennaCallingApp Frontend changelog
 
+# [1.2.0](https://github.com/ViennaCallingApp/frontend/compare/v1.1.0...v1.2.0) (2023-07-30)
+
+
+### Features
+
+* update styling ([18b6ff7](https://github.com/ViennaCallingApp/frontend/commit/18b6ff7bcbd3fbb2f26b73711e7acf73167de917))
+
 # [1.1.0](https://github.com/ViennaCallingApp/frontend/compare/v1.0.3...v1.1.0) (2023-07-30)
 
 
